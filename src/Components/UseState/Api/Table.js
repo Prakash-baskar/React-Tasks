@@ -11,7 +11,7 @@ const Table = ({ data, setData, setEditingIndex }) => {
 
   const handleEdit = (index) => {
     setEditingIndex(index);
-    navigate('/nonapiform');
+    navigate('/');
   };
 
   return (
@@ -27,7 +27,7 @@ const Table = ({ data, setData, setEditingIndex }) => {
         <tbody>
           {data.map((item, index) => (
             <tr key={index}>
-              <td>{item.name}</td>
+              <td>{item.email}</td>
               <td>{item.password}</td>
               <td>
                 <button onClick={() => handleEdit(index)}>Edit</button>
@@ -36,7 +36,7 @@ const Table = ({ data, setData, setEditingIndex }) => {
             </tr>
           ))}
         </tbody>
-        <div><button onClick={() => navigate('/nonapiform')}>Back</button></div>
+        <div><button onClick={() => navigate('/')}>Back</button></div>
       </table>
     </div>
   );
