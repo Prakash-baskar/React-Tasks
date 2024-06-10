@@ -1,22 +1,41 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { apiGetById, apiGetMethod, apiGetPutId } from '../../Service/Api'
+import { useNavigate } from 'react-router-dom'
 
-const Table = ({ data, setData, setEditingIndex }) => {
+export const TableAPI = () => {
+
   const navigate = useNavigate();
+  const [user,setUser] = useState({
+    success:false
+  })
 
-  const handleDelete = (index) => {
-    const updatedData = data.filter((_, i) => i !== index);
-    setData(updatedData);
-  };
+ async function apiData() {
+    const data = await apiGetMethod()
+    setUser({
+      ...user
+      ,data,
+      success:true
+    })
+  }
+  useEffect(
+    () =>{
+      apiData()
+    },[]
+  )
+  console.log(user);
 
-  const handleEdit = (index) => {
-    setEditingIndex(index);
-    navigate('/');
-  };
+  const handleEdit = (id) =>{
+    apiGetPutId(id);
+    navigate('/formapi')
+  }
 
+  const handleDelete = (id) =>{
+     apiGetById(id);
+  }
   return (
     <div>
-      <table>
+      {
+       user.success ?  <table>
         <thead>
           <tr>
             <th>Name</th>
@@ -25,21 +44,23 @@ const Table = ({ data, setData, setEditingIndex }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.email}</td>
-              <td>{item.password}</td>
+          {user.data.map((item) => (
+            <tr key={item.id}>
+              <td>{item.userEmail}</td>
+              <td>{item.userPassword}</td>
               <td>
-                <button onClick={() => handleEdit(index)}>Edit</button>
-                <button onClick={() => handleDelete(index)}>Delete</button>
+                <button onClick={ () =>handleEdit(item.id)}>Edit</button>
+                <button onClick={ () =>handleDelete(item.id)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
-        <div><button onClick={() => navigate('/')}>Back</button></div>
-      </table>
+        <div><button onClick={ () => navigate('/formapi')}>Back</button></div>
+      </table> : 'Loading....'
+      }
     </div>
-  );
-};
+  )
+}
 
-export default Table;
+
+

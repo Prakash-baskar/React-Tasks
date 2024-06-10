@@ -1,38 +1,44 @@
-import React, { useState } from 'react'
+import { useState } from "react"
+import { apiPostMethod } from "../../Service/Api"
+import { useNavigate } from "react-router-dom"
+
 
 const FormApi = () => {
+  const navigate = useNavigate()
+   
+  const [user,setUser] = useState({
+    userEmail: '',
+    userPassword: '',
+  })
 
-  const [intialValue,SetIntialValue] = useState(
-    {
-      email:'',
-      password:'',
-
-    }
-  );
-  const handleChange = (e) =>{
-      const {name,value} = e.target;
-      console.log(e.target.value);
-      SetIntialValue({
-        ...intialValue,
+const handleChange = (e) =>{
+    const {name,value} = e.target
+    setUser(
+      {
+        ...user,
         [name]:value,
-      });
-  }
+      }
+    )
+}
+
+const handleSubmit = (e) =>{
+    e.preventDefault();
+    apiPostMethod(user)
+    navigate('/tableapi')
+}
+ 
   return (
     <div>
       <div className='head'>
-        <form>
+        <form onSubmit={handleSubmit}>
         <span>UseState Api</span>
           <div className='manageinput'>
             <label>Email</label>
-            <input
-            name='email' 
-            value={intialValue.email} onChange={handleChange}></input>
+            <input value={user.userEmail} name="userEmail" onChange={handleChange}/>
           </div>
           <div className='manageinput'>
             <label>Password</label>
-            <input 
-            name='password'
-            value={intialValue.password} onChange={handleChange}></input>
+            <input value={user.userPassword} name="userPassword" onChange={handleChange}/>
           </div>
           <div>
             <button>Submit</button> 
