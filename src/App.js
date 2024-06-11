@@ -20,6 +20,7 @@ function App() {
     <Route path="/nonapiform" element={<Form data={data} setData={setData} editingIndex={editingIndex} setEditingIndex={setEditingIndex} />} />
     <Route path="/table" element={<Table data={data} setData={setData} setEditingIndex={setEditingIndex} />} />
     <Route path='/formapi' element ={<FormApi /> } />
+    <Route path='/formapi/:id' element ={<FormApi /> } />
     <Route path='/tableapi' element ={< TableAPI/> } />
    </Routes>
    </BrowserRouter>

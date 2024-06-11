@@ -1,15 +1,34 @@
-import { useState } from "react"
-import { apiPostMethod } from "../../Service/Api"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { apiGetById, apiPostMethod, apiPutMethod } from "../../Service/Api"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 const FormApi = () => {
   const navigate = useNavigate()
+  
+  const urlProms = useParams()
    
   const [user,setUser] = useState({
     userEmail: '',
     userPassword: '',
-  })
+  }) 
+
+  async function fetchData(id) {
+    const data = await apiGetById(id)
+    setUser(
+      {
+        ...user,
+        userEmail:data.userEmail,
+        userPassword:data.userPassword
+      }
+    )
+  }
+useEffect( () => {
+  if(urlProms.id !== undefined){ 
+    fetchData(urlProms.id)
+  }
+},[])
+
 
 const handleChange = (e) =>{
     const {name,value} = e.target
@@ -23,7 +42,11 @@ const handleChange = (e) =>{
 
 const handleSubmit = (e) =>{
     e.preventDefault();
+   if( urlProms.id !== undefined){
+    apiPutMethod(urlProms.id,user)
+   }else{
     apiPostMethod(user)
+   }
     navigate('/tableapi')
 }
  
@@ -40,8 +63,8 @@ const handleSubmit = (e) =>{
             <label>Password</label>
             <input value={user.userPassword} name="userPassword" onChange={handleChange}/>
           </div>
-          <div>
-            <button>Submit</button> 
+          <div className="btn">
+            <button className="submit">Submit</button> 
           </div>
         </form>
       </div>

@@ -30,14 +30,15 @@ const Table = ({ data, setData, setEditingIndex }) => {
               <td>{item.name}</td>
               <td>{item.password}</td>
               <td>
-                <button onClick={() => handleEdit(index)}>Edit</button>
-                <button onClick={() => handleDelete(index)}>Delete</button>
+                <button className='edit' onClick={() => handleEdit(index)}>Edit</button>
+                <button className='delete' onClick={() => handleDelete(index)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
-        <div><button onClick={() => navigate('/nonapiform')}>Back</button></div>
+        
       </table>
+      <div className='backbtn'><button className='back' onClick={() => navigate('/nonapiform')}>Back</button></div>
     </div>
   );
 };

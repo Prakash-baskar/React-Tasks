@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { apiGetById, apiGetMethod, apiGetPutId } from '../../Service/Api'
+import { apiDeleteById, apiGetMethod, apiPutMethod } from '../../Service/Api'
 import { useNavigate } from 'react-router-dom'
 
 export const TableAPI = () => {
@@ -25,17 +25,24 @@ export const TableAPI = () => {
   console.log(user);
 
   const handleEdit = (id) =>{
-    apiGetPutId(id);
-    navigate('/formapi')
+    apiPutMethod(id);
+    navigate(`/formapi/${id}`)
   }
 
-  const handleDelete = (id) =>{
-     apiGetById(id);
+  const handleDelete = async (id) =>{
+    setUser({
+      ...user,
+      success:false
+    })
+    const status = await apiDeleteById(id); 
+    if(status == 200) apiData()
   }
   return (
     <div>
       {
-       user.success ?  <table>
+       user.success ?
+       <> 
+       <table>
         <thead>
           <tr>
             <th>Name</th>
@@ -49,14 +56,17 @@ export const TableAPI = () => {
               <td>{item.userEmail}</td>
               <td>{item.userPassword}</td>
               <td>
-                <button onClick={ () =>handleEdit(item.id)}>Edit</button>
-                <button onClick={ () =>handleDelete(item.id)}>Delete</button>
+                <button className='edit' onClick={ () =>handleEdit(item.id)}>Edit</button>
+                <button className='delete' onClick={ () =>handleDelete(item.id)}>Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
-        <div><button onClick={ () => navigate('/formapi')}>Back</button></div>
-      </table> : 'Loading....'
+       
+      </table>
+       <div className='backbtn'><button className='back' onClick={ () => navigate('/formapi')}>Back</button></div> 
+       </> : 'Loading....'
+      
       }
     </div>
   )

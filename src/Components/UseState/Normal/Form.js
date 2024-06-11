@@ -35,6 +35,7 @@ const Form = ({data,setData,editingIndex,setEditingIndex}) => {
     <div>
         <div className='head'>
            <form onSubmit={handleSubmit}>
+            <span>Normal Form</span>
              <div className='manageinput'>
                <label>Name</label>
                <input value={name} onChange={(e) =>{setName(e.target.value)}}></input>
@@ -43,8 +44,8 @@ const Form = ({data,setData,editingIndex,setEditingIndex}) => {
                 <label>Password</label>
                 <input value={password} onChange={(e) =>{setPassword(e.target.value)}}></input>
              </div> 
-             <div>
-                <button type='submit'>{editingIndex !== null ? 'update': 'Submit'}</button>
+             <div className='btn'>
+                <button className='submit' type='submit'>{editingIndex !== null ? 'update': 'Submit'}</button>
              </div> 
            </form>
         </div>

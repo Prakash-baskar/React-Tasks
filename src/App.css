@@ -53,15 +53,79 @@ form{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid;
+  border: 1px solid white;
+  border-radius: 15px;
   padding: 20px;
+  background-color:gainsboro;
+  width: 70vh;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 input{
   display: flex;
   flex-direction: column;
+  width: 60vh;
+  height: 35px;
+  border: none;
+  border-radius: 3px;
 }
 
+.btn{
+   align-self: flex-end;
+}
+.submit{
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+table,tr,td,th{
+  border: 1px solid black !important;
+  padding: 5px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  margin-left: 25%;
+}
+th{
+  background-color: darkgrey;
+}
+table{
+  width: 50%;
+}
+
+.edit{
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.delete{
+  background-color: rgb(252, 35, 35);
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 5px;
+}
+.backbtn{
+   display: flex;
+   justify-content: center;
+   padding: 10px;
+}
+.back{
+  background-color: brown;
+  padding: 8px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
 
 
 
