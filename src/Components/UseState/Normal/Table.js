@@ -20,7 +20,9 @@ const Table = ({ data, setData, setEditingIndex }) => {
         <thead>
           <tr>
             <th>Name</th>
+            <th>email</th>
             <th>Password</th>
+            <th>Confirm Password</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -28,7 +30,9 @@ const Table = ({ data, setData, setEditingIndex }) => {
           {data.map((item, index) => (
             <tr key={index}>
               <td>{item.name}</td>
+              <td>{item.email}</td>
               <td>{item.password}</td>
+              <td>{item.cpassword}</td>
               <td>
                 <button className='edit' onClick={() => handleEdit(index)}>Edit</button>
                 <button className='delete' onClick={() => handleDelete(index)}>Delete</button>

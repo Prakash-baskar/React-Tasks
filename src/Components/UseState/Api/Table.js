@@ -45,15 +45,21 @@ export const TableAPI = () => {
        <table>
         <thead>
           <tr>
+            <th>S.No</th>
             <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
             <th>Password</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {user.data.map((item) => (
+          {user.data.map((item,index) => (
             <tr key={item.id}>
+              <td>{index +1}</td>
+              <td>{item.userName}</td>
               <td>{item.userEmail}</td>
+              <td>{item.userPhone}</td>
               <td>{item.userPassword}</td>
               <td>
                 <button className='edit' onClick={ () =>handleEdit(item.id)}>Edit</button>

@@ -6,6 +6,7 @@ import Table from './Components/UseState/Normal/Table';
 import FormApi from './Components/UseState/Api/Form';
 import Navbar from './Components/Navbar/Navbar';
 import { TableAPI } from './Components/UseState/Api/Table';
+import FormMy from './Components/UseReduceer/Normal/Form';
 
 function App() {
  
@@ -22,6 +23,7 @@ function App() {
     <Route path='/formapi' element ={<FormApi /> } />
     <Route path='/formapi/:id' element ={<FormApi /> } />
     <Route path='/tableapi' element ={< TableAPI/> } />
+    <Route path='/material' element={<FormMy/>}/>
    </Routes>
    </BrowserRouter>
   );

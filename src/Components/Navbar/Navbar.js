@@ -15,7 +15,7 @@ function BasicExample() {
           <Nav className="ml-auto">
             <NavDropdown title="UseState" id="basic-nav-dropdown" alignRight>
               {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item> */}
-              <NavDropdown.Item href="/nonapiform">without api</NavDropdown.Item>
+              <NavDropdown.Item href="/nonapiform">Normal</NavDropdown.Item>
               <NavDropdown.Item href="/formapi">with api</NavDropdown.Item>
               {/* <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
