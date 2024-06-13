@@ -78,7 +78,7 @@ const FormApi = () => {
   return (
     <div>
       <div className='head'>
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
           <span><h2>UseState Api</h2></span>
           <div className='manageinput'>
             <label>Name</label>
@@ -97,7 +97,7 @@ const FormApi = () => {
           </div>
           <div className='manageinput'>
             <label>Password</label>
-            <input value={user.userPassword} name="userPassword" onChange={handleChange} />
+            <input value={user.userPassword} type="password" name="userPassword" onChange={handleChange} />
             {errors.userPassword && <p className="error">{errors.userPassword}</p>}
           </div>
           <div className="btn">

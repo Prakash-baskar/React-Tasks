@@ -1,17 +1,21 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';  
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import Form from './Components/UseState/Normal/Form';
 import Table from './Components/UseState/Normal/Table';
 import FormApi from './Components/UseState/Api/Form';
 import Navbar from './Components/Navbar/Navbar';
 import { TableAPI } from './Components/UseState/Api/Table';
 import FormMy from './Components/UseReduceer/Normal/Form';
+import { UseReducerTable } from './Components/UseReduceer/Normal/Table';
+import { Reducer,datas } from './Components/UseReduceer/Normal/Reducer';
 
 function App() {
  
   const [data, setData] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
+
+  const [detail, dispatch] = useReducer(Reducer, datas)
 
   return (  
    <BrowserRouter >
@@ -23,7 +27,8 @@ function App() {
     <Route path='/formapi' element ={<FormApi /> } />
     <Route path='/formapi/:id' element ={<FormApi /> } />
     <Route path='/tableapi' element ={< TableAPI/> } />
-    <Route path='/material' element={<FormMy/>}/>
+    <Route path='/material' element={<FormMy detail={detail} dispatch={dispatch}/>}/>
+    <Route path='/reducertable' element={<UseReducerTable  detail={detail} dispatch={dispatch}/>}/>
    </Routes>
    </BrowserRouter>
   );

@@ -65,7 +65,7 @@ const Form = ({data,setData,editingIndex,setEditingIndex}) => {
   return (
     <div>
         <div className='head'>
-           <form onSubmit={handleSubmit}>
+           <form className='form' onSubmit={handleSubmit}>
             <span><h2>Normal Form</h2></span>
              <div className='manageinput'>
                <label>Name</label>
@@ -79,12 +79,12 @@ const Form = ({data,setData,editingIndex,setEditingIndex}) => {
              </div>
              <div className='manageinput'>
                 <label>Password</label>
-                <input value={password} onChange={(e) =>{setPassword(e.target.value)}}></input>
+                <input value={password} type='password' onChange={(e) =>{setPassword(e.target.value)}}></input>
                 {errors.password && <p className='error'>{errors.password}</p>}
              </div> 
              <div className='manageinput'>
                 <label>Comfirm Password</label>
-                <input value={cpassword} onChange={(e) =>{setCPassword(e.target.value)}}></input>
+                <input value={cpassword} type='password' onChange={(e) =>{setCPassword(e.target.value)}}></input>
                 {errors.cpassword && <p className='error'>{errors.cpassword}</p>}
              </div>
          
