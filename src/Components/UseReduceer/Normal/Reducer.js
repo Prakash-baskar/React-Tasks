@@ -40,6 +40,20 @@ export  const datas = {
             userEmail: "",
             userPassword: "",
         };
+     
+    case "deleteUser":
+        return{
+            ...state,
+            userData: state.userData.filter((_,index) => index !== action.payload)
+        };
+        
+    case "editUser": 
+        return{
+            ...state,
+            userName:action.payload.userName,
+            userEmail:action.payload.userEmail,
+            userPassword:action.payload.userPassword,
+        }   
 
     default:
         return state;

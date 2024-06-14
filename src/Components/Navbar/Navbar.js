@@ -7,23 +7,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function BasicExample() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse  id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <NavDropdown title="UseState" id="basic-nav-dropdown" alignRight>
-              {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item> */}
-              <NavDropdown.Item href="/nonapiform">Normal</NavDropdown.Item>
-              <NavDropdown.Item href="/formapi">with api</NavDropdown.Item>
-              {/* <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className="container">
+      <a className="navbar-brand" href="#home">React-Bootstrap</a>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              UseState
+            </a>
+            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a className="dropdown-item" href="/nonapiform">Normal</a>
+              <a className="dropdown-item" href="/formapi">with api</a>
+            </div>
+          </li>
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinktwo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              UseReducer
+            </a>
+            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLinktwo">
+              <a className="dropdown-item" href="/reducerform">Normal</a>
+              <a className="dropdown-item" href="/">with api</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   );
 }
 

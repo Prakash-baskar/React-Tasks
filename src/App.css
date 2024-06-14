@@ -91,7 +91,7 @@ table,tr,td,th{
   margin-left: 25%;
 }
 th{
-  background-color: darkgrey;
+  background-color: rgba(236, 235, 235, 0.952);
 }
 table{
   width: 50%;

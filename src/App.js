@@ -9,6 +9,7 @@ import { TableAPI } from './Components/UseState/Api/Table';
 import FormMy from './Components/UseReduceer/Normal/Form';
 import { UseReducerTable } from './Components/UseReduceer/Normal/Table';
 import { Reducer,datas } from './Components/UseReduceer/Normal/Reducer';
+import ReducerForm from './Components/UseReduceer/Api/Form';
 
 function App() {
  
@@ -29,6 +30,7 @@ function App() {
     <Route path='/tableapi' element ={< TableAPI/> } />
     <Route path='/material' element={<FormMy detail={detail} dispatch={dispatch}/>}/>
     <Route path='/reducertable' element={<UseReducerTable  detail={detail} dispatch={dispatch}/>}/>
+    <Route path='/reducerform' element ={<ReducerForm /> } />
    </Routes>
    </BrowserRouter>
   );
