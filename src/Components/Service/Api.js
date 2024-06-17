@@ -15,8 +15,8 @@ export const apiPostMethod = async (data) =>{
 // api to get method show to table
 export const apiGetMethod = async () =>{
     try {
-        const response = await axios.get(MY_BASE_URL)
-        const data = await response.data 
+        const response = await axios.get(MY_BASE_URL);
+        const data = await response.data;
         return data
     } catch (error) {
         console.error(error);

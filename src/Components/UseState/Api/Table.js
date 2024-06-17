@@ -35,7 +35,7 @@ export const TableAPI = () => {
       success:false
     })
     const status = await apiDeleteById(id); 
-    if(status == 200) apiData()
+    if(status === 200) apiData()
   }
   return (
     <div>

@@ -29,8 +29,8 @@ function BasicExample() {
               UseReducer
             </a>
             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLinktwo">
-              <a className="dropdown-item" href="/reducerform">Normal</a>
-              <a className="dropdown-item" href="/">with api</a>
+              <a className="dropdown-item" href="/material">Normal</a>
+              <a className="dropdown-item" href="/reducerform">with api</a>
             </div>
           </li>
         </ul>
