@@ -1,7 +1,7 @@
 
 
-import { apiDeleteById, apiGetById, apiPostMethod } from "../../Service/Api";
-import { ADD_ITEM, ADD_USER_EMAIL, ADD_USER_NAME, ADD_USER_PASSWORD, DELETE_DATA, EDIT_DATA, GET_DATA } from "./Type";
+import { apiDeleteById, apiGetById, apiPostMethod, apiPutMethod } from "../../Service/Api";
+import { ADD_ITEM, ADD_USER_EMAIL, ADD_USER_NAME, ADD_USER_PASSWORD, DELETE_DATA, EDIT_DATA, EDIT_SUCCESS, GET_DATA } from "./Type";
 
 
 
@@ -47,5 +47,12 @@ export const editData = (data) =>{
     return{
         type:EDIT_DATA,
         payload:data
+    }
+}
+
+export const putData = (id, data) =>{
+    apiPutMethod(id,data)
+    return{
+        type:EDIT_SUCCESS,
     }
 }

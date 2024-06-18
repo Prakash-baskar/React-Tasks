@@ -63,7 +63,9 @@ export function ReducerApi(state,action) {
                 userName:action.payload.userName,
                 userEmail:action.payload.userEmail,
                 userPassword:action.payload.userPassword,
-            }    
+            } 
+         
+           
         default:
             return state;
     }
