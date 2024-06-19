@@ -11,6 +11,7 @@ import { UseReducerTable } from './Components/UseReduceer/Normal/Table';
 import { Reducer,datas } from './Components/UseReduceer/Normal/Reducer';
 import ReducerForm from './Components/UseReduceer/Api/Form';
 import { ReduerTableApi } from './Components/UseReduceer/Api/Table';
+import RegisterForm from './Authentication/RegisterForm';
 
 function App() {
  
@@ -34,6 +35,8 @@ function App() {
     <Route path='/reducerform' element ={<ReducerForm  detail={detail} dispatch={dispatch}/> } />
     <Route path='/reducerform/:id' element ={<ReducerForm  detail={detail} dispatch={dispatch}/> } />
     <Route path='/reducertableapi' element ={<ReduerTableApi detail={detail} dispatch={dispatch}/> } />
+
+    <Route path='/Registerform' element ={<RegisterForm /> } />
    </Routes>
    </BrowserRouter>
   );

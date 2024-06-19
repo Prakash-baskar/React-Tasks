@@ -82,22 +82,22 @@ const FormApi = () => {
           <span><h2>UseState Api</h2></span>
           <div className='manageinput'>
             <label>Name</label>
-            <input value={user.userName} name="userName" onChange={handleChange} />
+            <input className='input'  value={user.userName} name="userName" onChange={handleChange} />
             {errors.userName && <p className="error">{errors.userName}</p>}
           </div>
           <div className='manageinput'>
             <label>Email</label>
-            <input value={user.userEmail} name="userEmail" onChange={handleChange} />
+            <input className='input'  value={user.userEmail} name="userEmail" onChange={handleChange} />
             {errors.userEmail && <p className="error">{errors.userEmail}</p>}
           </div>
           <div className='manageinput'>
             <label>Phone Number</label>
-            <input value={user.userPhone} name="userPhone" onChange={handleChange} />
+            <input className='input'  value={user.userPhone} name="userPhone" onChange={handleChange} />
             {errors.userPhone && <p className="error">{errors.userPhone}</p>}
           </div>
           <div className='manageinput'>
             <label>Password</label>
-            <input value={user.userPassword} type="password" name="userPassword" onChange={handleChange} />
+            <input className='input'  value={user.userPassword} type="password" name="userPassword" onChange={handleChange} />
             {errors.userPassword && <p className="error">{errors.userPassword}</p>}
           </div>
           <div className="btn">

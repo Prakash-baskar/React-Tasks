@@ -69,22 +69,22 @@ const Form = ({data,setData,editingIndex,setEditingIndex}) => {
             <span><h2>Normal Form</h2></span>
              <div className='manageinput'>
                <label>Name</label>
-               <input value={name} onChange={(e) =>{setName(e.target.value)}}></input>
+               <input className='input' value={name} onChange={(e) =>{setName(e.target.value)}}></input>
                {errors.name && <p className="error">{errors.name}</p>}
              </div>
              <div className='manageinput'>
                 <label>Email</label>
-                <input value={email} onChange={(e) =>{setEmail(e.target.value)}}></input>
+                <input className='input'  value={email} onChange={(e) =>{setEmail(e.target.value)}}></input>
                 {errors.email && <p className='error'>{errors.email}</p>}
              </div>
              <div className='manageinput'>
                 <label>Password</label>
-                <input value={password} type='password' onChange={(e) =>{setPassword(e.target.value)}}></input>
+                <input className='input'  value={password} type='password' onChange={(e) =>{setPassword(e.target.value)}}></input>
                 {errors.password && <p className='error'>{errors.password}</p>}
              </div> 
              <div className='manageinput'>
                 <label>Comfirm Password</label>
-                <input value={cpassword} type='password' onChange={(e) =>{setCPassword(e.target.value)}}></input>
+                <input className='input'  value={cpassword} type='password' onChange={(e) =>{setCPassword(e.target.value)}}></input>
                 {errors.cpassword && <p className='error'>{errors.cpassword}</p>}
              </div>
          
