@@ -33,6 +33,15 @@ function BasicExample() {
               <a className="dropdown-item" href="/reducerform">with api</a>
             </div>
           </li>
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkthree" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Forms
+            </a>
+            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLinkthree">
+              <a className="dropdown-item" href="/Registerform">Register</a>
+              <a className="dropdown-item" href="/reducerform">Login</a>
+            </div>
+          </li>
         </ul>
       </div>
     </div>

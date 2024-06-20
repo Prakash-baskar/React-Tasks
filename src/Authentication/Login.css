@@ -16,11 +16,29 @@
 }
 .Regmain{
     border: 1px solid;
-    padding: 10px;
+    padding: 18px;
     border-radius: 5px;
 }
 .Regin{
     display: flex;
     flex-direction: column;
     width: 50vh;
+}
+
+.select{
+    display: flex;
+    flex-direction: column;
+    width: 50vh;
+}
+.regbtn{
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+}
+.regbutton{
+    padding: 5px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
