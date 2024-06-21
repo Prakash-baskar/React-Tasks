@@ -39,7 +39,7 @@ function BasicExample() {
             </a>
             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLinkthree">
               <a className="dropdown-item" href="/Registerform">Register</a>
-              <a className="dropdown-item" href="/reducerform">Login</a>
+              <a className="dropdown-item" href="/loginform">Login</a>
             </div>
           </li>
         </ul>

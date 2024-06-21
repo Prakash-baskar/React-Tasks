@@ -1,77 +1,89 @@
-import React, { useState } from 'react'
-import "./Login.css"
+import React, { useState } from 'react';
+import "./Login.css";
+import registerFormApi from './Api/RegisterApi';
+import { useNavigate } from 'react-router-dom';
+
+
 const RegisterForm = () => {
 
-    const [userName,setUserName] = useState("");
-    const [email,setEmail] = useState("");
-    const [mobileNo,setMobileNo] = useState("");
-    const [password,setPassword] = useState("");
-    const [confirmPassword,setConfirmPassword] = useState("");
-    const [userRole,setUserRole] = useState("")
+    const navigate = useNavigate("")
+    const [register,setRegister] = useState({
+        userName:"",
+        email:"",
+        mobileNo:"",
+        password:"",
+        confirmPassword:"",
+        userRole:"",
+    })
+   
+   
 
-    const handleSubmit = () =>{
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('email',email);
-        localStorage.setItem('mobileNo', mobileNo);
-        localStorage.setItem('password', password);
-        localStorage.setItem('confirmPassword', confirmPassword);
-        localStorage.setItem('userRole', userRole);
-
-        setUserName("");
-        setEmail("");
-        setMobileNo("");
-        setPassword("");
-        setConfirmPassword("");
-        setUserRole("");
-
-        console.log()
+    const handleChange = (e) =>{
+       const {name,value} = e.target
+       setRegister({
+        ...register,
+        [name]:value
+       });
     }
 
-  return (
-    <div>
-      <div className='Regform'>
-        <form className='Regmain' onSubmit={handleSubmit}>
-            <div className='register'><h2>Rgister Form</h2></div>
-            <div>
-                <label>UserName</label>
-                <input className='Regin' value={userName} onChange={ (e) =>{setUserName(e.target.value)}} placeholder='UserName'></input>
-            </div>
-            <div>
-                <label>Email</label>
-                <input className='Regin' value={email} onChange={ (e) =>{setEmail(e.target.value)}} placeholder='Email'></input>
-            </div>
-            <div>
-                <label>Mobile Number</label>
-                <input className='Regin' value={mobileNo} onChange={ (e) =>{setMobileNo(e.target.value)}} placeholder='MobileNumber'></input>
-            </div>
-            <div>
-                <label>Password</label>
-                <input className='Regin' value={password} onChange={ (e) =>{setPassword(e.target.value)}} placeholder='Enter Password'></input>
-            </div>
-            <div>
-                <label>Confirm Password</label>
-                <input className='Regin' value={confirmPassword} onChange={ (e) =>{setConfirmPassword(e.target.value)}} placeholder='Confirm Your Password'></input>
-            </div>
-            <div>
-                <label htmlFor="Role">User Role</label>
-                    <select
-                     className='select'
-                     name='userRole'
-                     id='Role'
-                     value={userRole}
-                     onChange={ (e) =>{setUserRole(e.target.value)}}
-                    >
-                     <option value="Admin">Admin</option>
-                     <option value="User">User</option>
-                    </select>
-            </div>
-            <div className='regbtn'>
-                <button className='regbutton' type='submit'>Register</button>
-            </div>
-        </form>
-      </div>
-    </div>
-  )
-}
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(register);
+        registerFormApi(register);  
+        setRegister({
+            userName:"",
+            email:"",
+            mobileNo:"",
+            password:"",
+            confirmPassword:"",
+            userRole:"",
 
-export default RegisterForm
+        })
+       navigate("/loginform")
+    };
+
+    return (
+        <div>
+            <div className='Regform'>
+                <form className='Regmain' onSubmit={handleSubmit}>
+
+                    <div className='register'><h2>Register Form</h2></div>
+                    <div>
+                        <label>UserName</label>
+                        <input className='Regin' name='userName' value={register.userName} onChange={handleChange} placeholder='UserName' />
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input className='Regin' name='email' value={register.email} onChange={handleChange} placeholder='Email' />
+                    </div>
+                    <div>
+                        <label>Mobile Number</label>
+                        <input className='Regin' name='mobileNo' value={register.mobileNo} onChange={handleChange} placeholder='MobileNumber' />
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input className='Regin' name='password' type='password' value={register.password} onChange={handleChange} placeholder='Enter Password' />
+                    </div>
+                    <div>
+                        <label>Confirm Password</label>
+                        <input className='Regin' name='confirmPassword' type='password'  value={register.confirmPassword} onChange={handleChange} placeholder='Confirm Your Password' />
+                    </div>
+                    <div>
+                        <label htmlFor="Role">User Role</label>
+                        <select className='select' name='userRole' id='Role' value={register.userRole} onChange={handleChange}>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
+                    <div className='regbtn'>
+                    
+                        <button className='regbutton' type='submit'>Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export default RegisterForm;
+
