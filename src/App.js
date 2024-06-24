@@ -13,6 +13,7 @@ import ReducerForm from './Components/UseReduceer/Api/Form';
 import { ReduerTableApi } from './Components/UseReduceer/Api/Table';
 import RegisterForm from './Authentication/RegisterForm';
 import LoginForm from './Authentication/LoginForm';
+import UserTable from './Authentication/UserTable';
 
 function App() {
  
@@ -39,6 +40,7 @@ function App() {
 
     <Route path='/Registerform' element ={<RegisterForm /> } />
     <Route path='/loginform' element ={<LoginForm/> } />
+    <Route path='/TableData' element ={<UserTable/> } />
    </Routes>
    </BrowserRouter>
   );

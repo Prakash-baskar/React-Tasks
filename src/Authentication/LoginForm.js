@@ -4,8 +4,9 @@ import loginApi from './Api/LoginApi';
 const LoginForm = () => {
 
   const [loginRegister,setLoginRegister] = useState({
-         userName:"",
+    
          password:"",
+         email:"",
   })
 
   const handleChange = (e) =>{
@@ -21,8 +22,8 @@ const LoginForm = () => {
     console.log(loginRegister)
     loginApi(loginRegister);
     setLoginRegister({
-      userName:"",
       password:"",
+      email:"",
     })
   }
   return (
@@ -32,8 +33,8 @@ const LoginForm = () => {
            <div className='register'><h2>Login Form</h2></div>
 
             <div>
-                <label>UserName</label>
-                <input className='Regin' placeholder='username' name='userName' value={loginRegister.userName} onChange={handleChange}></input>
+                <label>Email</label>
+                <input className='Regin' placeholder='username' name='email' value={loginRegister.email} onChange={handleChange}></input>
             </div>
             <div>
                 <label>Password</label>

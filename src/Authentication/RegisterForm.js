@@ -70,7 +70,7 @@ const RegisterForm = () => {
                     </div>
                     <div>
                         <label htmlFor="Role">User Role</label>
-                        <select className='select' name='userRole' id='Role' value={register.userRole} onChange={handleChange}>
+                        <select className='select'name='userRole' id='Role' value={register.userRole} onChange={handleChange}>
                             <option value="Admin">Admin</option>
                             <option value="User">User</option>
                         </select>
