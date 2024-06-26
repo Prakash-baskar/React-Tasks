@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "./Login.css";
 import registerFormApi from './Api/RegisterApi';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const RegisterForm = () => {
     const navigate = useNavigate();
@@ -15,6 +17,8 @@ const RegisterForm = () => {
     });
 
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -50,12 +54,19 @@ const RegisterForm = () => {
         }
     };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
+
     return (
         <div>
             <div className='Regform'>
                 <form className='Regmain' onSubmit={handleSubmit}>
                     <div className='register'><h2>Register Form</h2></div>
-                    {/* {error && <div className='error-message'>{error}</div>} */}
                     <div>
                         <label>UserName</label>
                         <input className='Regin' name='userName' value={register.userName} onChange={handleChange} placeholder='UserName' />
@@ -66,15 +77,17 @@ const RegisterForm = () => {
                     </div>
                     <div>
                         <label>Mobile Number</label>
-                        <input className='Regin' name='mobileNo' value={register.mobileNo} onChange={handleChange} placeholder='MobileNumber' />
+                        <input className='Regin' name='mobileNo' value={register.mobileNo} onChange={handleChange} placeholder='Mobile Number' />
                     </div>
-                    <div>
+                    <div className='password-container'>
                         <label>Password</label>
-                        <input className='Regin' name='password' type='password' value={register.password} onChange={handleChange} placeholder='Enter Password' />
+                        <input className='Regin' name='password' type={showPassword ? 'text' : 'password'} value={register.password} onChange={handleChange} placeholder='Enter Password' />
+                        <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} onClick={togglePasswordVisibility} className='password-icon' />
                     </div>
-                    <div>
+                    <div className='password-container'>
                         <label>Confirm Password</label>
-                        <input className='Regin' name='confirmPassword' type='password' value={register.confirmPassword} onChange={handleChange} placeholder='Confirm Your Password' />
+                        <input className='Regin' name='confirmPassword' type={showConfirmPassword ? 'text' : 'password'} value={register.confirmPassword} onChange={handleChange} placeholder='Confirm Your Password' />
+                        <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} onClick={toggleConfirmPasswordVisibility} className='password-icon' />
                     </div>
                     <div>
                         <label htmlFor="Role">User Role</label>
@@ -95,5 +108,3 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
-
-

@@ -79,3 +79,14 @@
 .usertable{
    width: 50%;
 }
+.password-container {
+    position: relative;
+}
+
+.password-icon {
+    position: absolute;
+    right: 5px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

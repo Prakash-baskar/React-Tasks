@@ -7,10 +7,13 @@ const UserTable = () => {
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    id: '',
+    userId: '',
     userName: '',
     email: '',
     mobileNo: '',
+    password: '',
+    confirmPassword: '',
+    userRole:'',
     status: '',
   });
 
@@ -39,11 +42,11 @@ const UserTable = () => {
 
         setUserData(response.data);
         setFormData({
-          id: response.data.Details.id,
+          userId: response.data.Details.userId,
           userName: response.data.Details.userName,
           email: response.data.Details.email,
-          mobileNo: response.data.Details.mobileNo,
-          status: response.data.Details.status,
+          mobileNo: response.data.Details.mobileNo, 
+          userRole:response.data.Details.userRole
         });
       } catch (err) {
         const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
@@ -78,11 +81,14 @@ const UserTable = () => {
 
     try {
       const response = await axios.put(`http://localhost:8080/api/user/update`, {
-        id: formData.id,
+        userId: formData.userId,
         userName: formData.userName,
         email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
         mobileNo: formData.mobileNo,
-        status: formData.status,
+        userRole:formData.userRole,
+        
       }, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -99,19 +105,20 @@ const UserTable = () => {
 
   const handleDelete = async () => {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    const useremail = localStorage.getItem('email');
 
-    if (!token || !username) {
+    if (!token || !useremail) {
       handleTokenError();
       return;
     }
 
     try {
-      await axios.delete(`http://localhost:8080/api/user/deleteUser/${username}`, {
+      const response = await axios.delete(`http://localhost:8080/api/user/deleteUser/${useremail}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(response);
 
       setUserData(null);
       alert('User deleted successfully');
@@ -159,6 +166,16 @@ const UserTable = () => {
                 />
               </label>
               <label>
+                Password:
+                <input
+                  className="form-control"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
                 Mobile Number:
                 <input
                   className="form-control"
@@ -169,12 +186,12 @@ const UserTable = () => {
                 />
               </label>
               <label>
-                Status:
+                confirmPassword:
                 <input
                   className="form-control"
-                  type="text"
-                  name="status"
-                  value={formData.status}
+                  type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
                   onChange={handleInputChange}
                 />
               </label>
@@ -189,7 +206,6 @@ const UserTable = () => {
                     <th>User Name</th>
                     <th>Email</th>
                     <th>Mobile Number</th>
-                    <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -198,7 +214,6 @@ const UserTable = () => {
                     <td>{formData.userName}</td>
                     <td>{formData.email}</td>
                     <td>{formData.mobileNo}</td>
-                    <td>{formData.status}</td>
                     <td>
                       <button className="btn btn-primary" onClick={() => setIsEditing(true)}>Edit</button>
                       <button className="btn btn-danger" onClick={handleDelete}>Delete</button>

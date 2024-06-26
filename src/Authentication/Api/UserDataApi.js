@@ -1,20 +1,20 @@
-import axios from "axios";
-import API_BASE_URL from "./Config";
+// import axios from "axios";
+// import API_BASE_URL from "./Config";
 
 
 
-const userData = async (payload) =>{
-    try {
-        const response = await axios.get(API_BASE_URL+`/api/user/getUser/{useremail}`,{
-            headers: {
-                Authorization: `Bearer ${token}`,
-              },
+// const userData = async (payload) =>{
+//     try {
+//         const response = await axios.get(API_BASE_URL+`/api/user/getUser/{useremail}`,{
+//             headers: {
+//                 Authorization: `Bearer ${token}`,
+//               },
             
-        });
-        return response
-    } catch (error) {
-        console.error(error);
-    }
-}
+//         });
+//         return response
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
-export default userData;
+// export default userData;
