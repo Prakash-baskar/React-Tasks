@@ -30,8 +30,6 @@ const LoginForm = () => {
         }
       );
 
-      
-
       const responseBody = response.data.data.body;
       console.log("res-body",responseBody);
 

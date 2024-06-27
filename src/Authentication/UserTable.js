@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const UserTable = () => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState();
   const [formData, setFormData] = useState({
     userId: '',
     userName: '',
@@ -16,6 +16,7 @@ const UserTable = () => {
     userRole:'',
     status: '',
   });
+  console.log(userData)
 
   const navigate = useNavigate();
 
@@ -35,12 +36,13 @@ const UserTable = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(response)
 
         if (response.headers['content-type'] !== 'application/json') {
           throw new Error('Server did not respond with JSON data');
         }
 
-        setUserData(response.data);
+        setUserData(response.data.Details);
         setFormData({
           userId: response.data.Details.userId,
           userName: response.data.Details.userName,
@@ -48,6 +50,7 @@ const UserTable = () => {
           mobileNo: response.data.Details.mobileNo, 
           userRole:response.data.Details.userRole
         });
+        console.log(setUserData )
       } catch (err) {
         const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
         setError(err.response?.data || defaultError);
@@ -71,6 +74,7 @@ const UserTable = () => {
     });
   };
 
+  
   const handleEdit = async () => {
     const token = localStorage.getItem('token');
 
@@ -96,7 +100,9 @@ const UserTable = () => {
       });
 
       setUserData(response.data.Details);
+      console.log(setUserData)
       setIsEditing(false);
+      navigate('/usertable')
     } catch (err) {
       const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
       setError(err.response?.data || defaultError);
@@ -195,7 +201,7 @@ const UserTable = () => {
                   onChange={handleInputChange}
                 />
               </label>
-              <button className="btn btn-primary" onClick={handleEdit}>Save</button>
+              <button className="btn btn-primary"  onClick={handleEdit}>Save</button>
               <button className="btn btn-secondary" onClick={() => setIsEditing(false)}>Cancel</button>
             </div>
           ) : (
@@ -226,6 +232,7 @@ const UserTable = () => {
         </div>
       ) : (
         <p>No user data available</p>
+       
       )}
     </div>
   );

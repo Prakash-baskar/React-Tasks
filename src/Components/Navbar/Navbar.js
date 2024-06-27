@@ -42,6 +42,15 @@ function BasicExample() {
               <a className="dropdown-item" href="/loginform">Login</a>
             </div>
           </li>
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkfour" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Redux
+            </a>
+            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLinkfour">
+              <a className="dropdown-item" href="/reduxform">Register</a>
+              <a className="dropdown-item" href="/loginform">Login</a>
+            </div>
+          </li>
         </ul>
       </div>
     </div>

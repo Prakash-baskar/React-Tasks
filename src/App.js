@@ -17,6 +17,7 @@ import LoginForm from './Authentication/LoginForm';
 import UserTable from './Authentication/UserTable';
 import AdminTable from './Authentication/AdminTable';
 import Home from './Authentication/Home';
+import ReduxForm from './Redux/Form';
 
 function App() {
  
@@ -45,9 +46,10 @@ function App() {
     <Route path='/loginform' element ={<LoginForm/> } />
     <Route path='/home' element ={<Home/> } />
 
-
     <Route path='/usertable' element ={<UserTable/> } />
     <Route path='/admintable' element ={<AdminTable/> } />
+
+    <Route path='/reduxform' element ={<ReduxForm/> } />
    </Routes>
    </BrowserRouter>
   );
