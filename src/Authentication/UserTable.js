@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const UserTable = () => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
-  const [isEditing, setIsEditing] = useState();
+  const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     userId: '',
     userName: '',
@@ -20,43 +20,44 @@ const UserTable = () => {
 
   const navigate = useNavigate();
 
+  const fetchUserData = async () => {
+    const token = localStorage.getItem('token');
+    const useremail = localStorage.getItem('email');
+
+    if (!token || !useremail) {
+      handleTokenError();
+      return;
+    }
+
+    try {
+      const response = await axios.get(`http://localhost:8080/api/user/getUser/${useremail}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response)
+
+      if (response.headers['content-type'] !== 'application/json') {
+        throw new Error('Server did not respond with JSON data');
+      }
+
+      setUserData(response.data.Details);
+      setFormData({
+        userId: response.data.Details.userId,
+        userName: response.data.Details.userName,
+        email: response.data.Details.email,
+        mobileNo: response.data.Details.mobileNo, 
+        userRole:response.data.Details.userRole,
+        
+      });
+      console.log(setUserData )
+    } catch (err) {
+      const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
+      setError(err.response?.data || defaultError);
+    }
+  };
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      const token = localStorage.getItem('token');
-      const useremail = localStorage.getItem('email');
-
-      if (!token || !useremail) {
-        handleTokenError();
-        return;
-      }
-
-      try {
-        const response = await axios.get(`http://localhost:8080/api/user/getUser/${useremail}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log(response)
-
-        if (response.headers['content-type'] !== 'application/json') {
-          throw new Error('Server did not respond with JSON data');
-        }
-
-        setUserData(response.data.Details);
-        setFormData({
-          userId: response.data.Details.userId,
-          userName: response.data.Details.userName,
-          email: response.data.Details.email,
-          mobileNo: response.data.Details.mobileNo, 
-          userRole:response.data.Details.userRole
-        });
-        console.log(setUserData )
-      } catch (err) {
-        const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
-        setError(err.response?.data || defaultError);
-      }
-    };
-
     fetchUserData();
   }, []);
 
@@ -102,7 +103,8 @@ const UserTable = () => {
       setUserData(response.data.Details);
       console.log(setUserData)
       setIsEditing(false);
-      navigate('/usertable')
+      // navigate('/usertable')
+      fetchUserData()
     } catch (err) {
       const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
       setError(err.response?.data || defaultError);
@@ -239,3 +241,5 @@ const UserTable = () => {
 };
 
 export default UserTable;
+
+

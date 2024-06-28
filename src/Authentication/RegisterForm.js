@@ -47,10 +47,10 @@ const RegisterForm = () => {
                 });
                 navigate("/loginform");
             } else {
-                setError(response.data.message || "Registration failed. Please check your details and try again.");
+                setError(response.data.message || "Registration failed. Role is not applicable");
             }
         } catch (error) {
-            setError("An error occurred. Please try again later.");
+            setError("An error occurred. Role is not applicable.");
         }
     };
 
