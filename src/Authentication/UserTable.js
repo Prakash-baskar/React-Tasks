@@ -150,7 +150,7 @@ const UserTable = () => {
     <div className="">
       {userData ? (
         <div>
-          <h2>User Profile</h2>
+          <h2 className='userdetail'>User Details</h2>
           {isEditing ? (
             <div>
               <label>
