@@ -67,7 +67,12 @@
     justify-content: end;
     grid-column: span 2;
 }
-
+.radio{
+  display: flex ;
+  flex-direction: row !important;
+  gap: 20px;
+  margin-top: 5px;
+}
 .regbutton {
     padding: 5px;
     background-color: blue;
@@ -82,6 +87,9 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.errors{
+  color: red;
+}
 .usertable{
    width: 50%;
 }
@@ -89,13 +97,13 @@
     position: relative;
 }
 
-.password-icon {
+ /* .password-icon {
     position: absolute;
     right: 5px;
     top: 70%;
     transform: translateY(-50%);
     cursor: pointer;
-}
+} */
 .password-iconlog{
     position: absolute;
     right: 5px;
@@ -103,7 +111,7 @@
     transform: translateY(-50%);
     cursor: pointer;
    
-}
+} 
 
 .home{
     display: flex;
