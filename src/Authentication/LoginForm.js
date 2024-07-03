@@ -10,7 +10,7 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-
+const  [message,setMessage]=useState("")
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -54,9 +54,12 @@ const LoginForm = () => {
           console.error("Unexpected user role", responseBody.role);
         }
       } else {
+        setMessage("User not found or invalid response");
         console.error("Unexpected response structure", response.data);
       }
     } catch (error) {
+          setMessage("Register is not found");
+
       console.error("There was an error!", error);
       // Optionally, you can set state to display an error message to the user
     }
@@ -78,7 +81,7 @@ const LoginForm = () => {
           value={loginRegister.email}
           onChange={handleChange}
           aria-label="Email"
-          required
+         
         />
       </div>
       <div className="form-group password-container">
@@ -92,11 +95,12 @@ const LoginForm = () => {
           value={loginRegister.password}
           onChange={handleChange}
           aria-label="Password"
-          required
+   
         />
          <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} onClick={togglePasswordVisibility} className='password-iconlog' />
       </div>
       <button className="reg-button" type="submit">Login</button>
+      {message && <p className="text-danger">{message}</p>}
     </form>
   </div>
 </div>

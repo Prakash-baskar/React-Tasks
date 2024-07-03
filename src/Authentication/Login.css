@@ -3,12 +3,30 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.let{
+  color: white;
+  margin-top: 50px;
+}
+.registernow{
+  background-color: #3f454e;
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+.registernow:hover{
+  cursor:pointer;
+ background-color: #0056b3;
+}
 .home{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
+    background-image:url("./Images/57318a2e51a0066234fc883812cd05d9.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .register {
     display: flex;
@@ -34,7 +52,7 @@
 }
 .Regmain {
     border: 1px solid none;
-    padding: 40px;
+    padding: 30px;
     border-radius: 5px;
     background-color: #ecf0f3;
     box-shadow: inset -5px 5px 12px #ffffff, 5px 5px 12px rgba(0, 0, 0, .16);
@@ -204,4 +222,6 @@
   .reg-button:active {
     background-color: #004099;
   }
+  
+
   

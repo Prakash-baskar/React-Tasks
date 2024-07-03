@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {} from 'react';
 import "./Login.css";
 import registerFormApi from './Api/RegisterApi';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ const RegisterForm = () => {
     const navigate = useNavigate();
     // const [showPassword, setShowPassword] = useState(false);
     // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [error, setError] = useState("");
+   
 
     // const [register, setRegister] = useState({
     //     userName: "",
@@ -43,39 +43,50 @@ const RegisterForm = () => {
     //     });
     // }
 
-    const handleSubmit = async (value) => {
+    const handleSubmit = async (value,{setErrors}) => {
        
         // if (register.password !== register.confirmPassword) {
         //     setError("Passwords do not match");
         //     return;
         // }
-        try {
-            const response = await registerFormApi(value);
-            if (response && response.data && response.data.token) {
-                // setRegister({
-                //     userName: "",
-                //     email: "",
-                //     mobileNo: "",
-                //     password: "",
-                //     confirmPassword: "",
-                //     userRole: "",
-                // });
-                navigate("/loginform");
-            } else {
-                setError(response.data.message || "Registration failed. Role is not applicable");
-            }
-        } catch (error) {
-            setError("An error occurred. Role is not applicable.");
+        // try {
+        //     const response = await registerFormApi(value);
+        //     if (response && response.data && response.data.token) {
+        //         // setRegister({
+        //         //     userName: "",
+        //         //     email: "",
+        //         //     mobileNo: "",
+        //         //     password: "",
+        //         //     confirmPassword: "",
+        //         //     userRole: "",
+        //         // });
+        //         navigate("/loginform");
+        //     } else {
+        //         setError(response.data.message || "Registration failed. Role is not applicable");
+        //     }
+        // } catch (error) {
+        //     setError("An error occurred. Role is not applicable.");
+        // }
+
+        const response = await registerFormApi(value) 
+        if(response.Status === 1){
+            navigate('/loginform')
+        }
+        else if(response.error.code === '400 BAD_REQUEST'){
+            const apiError = {}
+            
+            response.error.errorList.forEach(value => {
+                if (value==="Error: Duplicate entry {0} for key 'user email'") apiError.email='This email is already registered*';
+                if (value===" Duplicate phone number") apiError.mobileNo='This number is already registered';
+                if (value==="role is not applicable") apiError.userRole='Admin is already registered';
+            });
+    
+            setErrors(apiError);
+             
         }
     };
 
-    // const togglePasswordVisibility = () => {
-    //     setShowPassword(!showPassword);
-    // };
-
-    // const toggleConfirmPasswordVisibility = () => {
-    //     setShowConfirmPassword(!showConfirmPassword);
-    // };
+   
     const formik = useFormik({
         initialValues:{
           userName:"",
@@ -86,9 +97,8 @@ const RegisterForm = () => {
           userRole:"",
         },validationSchema,
         onSubmit:handleSubmit
-      })
-console.log(formik.errors.confirmPassword);
-console.log(formik.errors.password);
+      }) 
+console.log(formik.errors);
     return (
         <div>
             <div className='Regform'>
@@ -102,7 +112,7 @@ console.log(formik.errors.password);
                     <div>
                         <label>Email</label>
                         <input className='Regin' name='email' value={formik.values.email} onChange={formik.handleChange} placeholder='Email' onBlur={formik.handleBlur} />
-                        {formik.touched.email && formik.errors.email?(<span className='errors'>{formik.errors.email}</span>):null}
+                        {formik.touched.email && formik.errors.email ?(<span className='errors'>{formik.errors.email}</span>):null}
                     </div>
                     <div>
                         <label>Mobile Number</label>
@@ -155,9 +165,12 @@ console.log(formik.errors.password);
                             <div className='errors'>{formik.errors.userRole}</div>
                         ) : null}
                     </div>
-                    {error && <div className='error-message'>{error}</div>}
+                    
                     <div className='regbtn'>
                         <button className='regbutton' type='submit'>Register</button>
+                    </div>
+                    <div>
+                        <a href='./loginform'>If you have an account please log in</a>
                     </div>
                 </form>
             </div>

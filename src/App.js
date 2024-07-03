@@ -4,7 +4,7 @@ import { useReducer, useState } from 'react';
 import Form from './Components/UseState/Normal/Form';
 import Table from './Components/UseState/Normal/Table';
 import FormApi from './Components/UseState/Api/Form';
-import Navbar from './Components/Navbar/Navbar';
+// import Navbar from './Components/Navbar/Navbar';
 import { TableAPI } from './Components/UseState/Api/Table';
 import FormMy from './Components/UseReduceer/Normal/Form';
 import { UseReducerTable } from './Components/UseReduceer/Normal/Table';
@@ -18,6 +18,7 @@ import UserTable from './Authentication/UserTable';
 import AdminTable from './Authentication/AdminTable';
 import Home from './Authentication/Home';
 import ReduxForm from './Redux/Form';
+// import { Nav } from './Authentication/Nav';
 
 function App() {
  
@@ -28,8 +29,10 @@ function App() {
 
   return (  
    <BrowserRouter >
-   <Navbar/>
+   {/* <Navbar/> */}
+    {/* <Nav/> */}
    <Routes> 
+    <Route path='/home' element ={<Home/> } />
     <Route path='/' element={<Navigate to='/nonapiform'/>}/>
     <Route path="/nonapiform" element={<Form data={data} setData={setData} editingIndex={editingIndex} setEditingIndex={setEditingIndex} />} />
     <Route path="/table" element={<Table data={data} setData={setData} setEditingIndex={setEditingIndex} />} />
@@ -44,7 +47,7 @@ function App() {
 
     <Route path='/Registerform' element ={<RegisterForm /> } />
     <Route path='/loginform' element ={<LoginForm/> } />
-    <Route path='/home' element ={<Home/> } />
+    
 
     <Route path='/usertable' element ={<UserTable/> } />
     <Route path='/admintable' element ={<AdminTable/> } />

@@ -8,12 +8,18 @@ function Home() {
  const handleClick = (e) => {
   e.preventDefault();
   navigate('/RegisterForm')
+  
  }
 
   return (
     <div>
         <div className='home'>
-          <button onClick={handleClick}>Register Now</button>
+          <div className='let'>
+            <h2>LET'S GET YOU REGISTERED</h2>
+          </div>
+          <div> 
+            <button className='registernow' onClick={handleClick}>REGISTER NOW</button>
+          </div>
         </div>
     </div>
   )
