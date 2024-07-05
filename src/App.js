@@ -18,12 +18,18 @@ import UserTable from './Authentication/UserTable';
 import AdminTable from './Authentication/AdminTable';
 import Home from './Authentication/Home';
 import ReduxForm from './Redux/Form';
+// import SideNav from './Sidenav/SideNav';
+
+
+
 // import { Nav } from './Authentication/Nav';
+
 
 function App() {
  
   const [data, setData] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
+  
 
   const [detail, dispatch] = useReducer(Reducer, datas)
 
@@ -31,6 +37,7 @@ function App() {
    <BrowserRouter >
    {/* <Navbar/> */}
     {/* <Nav/> */}
+   {/* <SideNav /> */}
    <Routes> 
     <Route path='/home' element ={<Home/> } />
     <Route path='/' element={<Navigate to='/nonapiform'/>}/>

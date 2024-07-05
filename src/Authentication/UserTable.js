@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
 
 const UserTable = () => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     userId: '',
     userName: '',
@@ -13,10 +15,9 @@ const UserTable = () => {
     mobileNo: '',
     password: '',
     confirmPassword: '',
-    userRole:'',
+    userRole: '',
     status: '',
   });
-  console.log(userData)
 
   const navigate = useNavigate();
 
@@ -35,7 +36,6 @@ const UserTable = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response)
 
       if (response.headers['content-type'] !== 'application/json') {
         throw new Error('Server did not respond with JSON data');
@@ -46,11 +46,9 @@ const UserTable = () => {
         userId: response.data.Details.userId,
         userName: response.data.Details.userName,
         email: response.data.Details.email,
-        mobileNo: response.data.Details.mobileNo, 
-        userRole:response.data.Details.userRole,
-        
+        mobileNo: response.data.Details.mobileNo,
+        userRole: response.data.Details.userRole,
       });
-      console.log(setUserData )
     } catch (err) {
       const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
       setError(err.response?.data || defaultError);
@@ -63,8 +61,7 @@ const UserTable = () => {
 
   const handleTokenError = () => {
     setError({ error: { reason: 'Token not found in local storage' } });
-    // Optionally, you can redirect the user to the login page or handle this case accordingly
-    navigate('/usertable'); // Example redirection to login page
+    navigate('/usertable');
   };
 
   const handleInputChange = (e) => {
@@ -75,7 +72,6 @@ const UserTable = () => {
     });
   };
 
-  
   const handleEdit = async () => {
     const token = localStorage.getItem('token');
 
@@ -92,8 +88,7 @@ const UserTable = () => {
         password: formData.password,
         confirmPassword: formData.confirmPassword,
         mobileNo: formData.mobileNo,
-        userRole:formData.userRole,
-        
+        userRole: formData.userRole,
       }, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -101,10 +96,8 @@ const UserTable = () => {
       });
 
       setUserData(response.data.Details);
-      console.log(setUserData)
       setIsEditing(false);
-      // navigate('/usertable')
-      fetchUserData()
+      fetchUserData();
     } catch (err) {
       const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
       setError(err.response?.data || defaultError);
@@ -126,15 +119,23 @@ const UserTable = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
 
       setUserData(null);
-      alert('User deleted successfully');
-     
+      // alert('User deleted successfully');
+      setShowModal(false);
     } catch (err) {
       const defaultError = { error: { reason: 'Unknown error occurred' }, timeStamp: new Date().toISOString() };
       setError(err.response?.data || defaultError);
+      setShowModal(false);
     }
+  };
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   if (error) {
@@ -194,7 +195,7 @@ const UserTable = () => {
                 />
               </label>
               <label>
-                confirmPassword:
+                Confirm Password:
                 <input
                   className="form-control"
                   type="password"
@@ -203,7 +204,7 @@ const UserTable = () => {
                   onChange={handleInputChange}
                 />
               </label>
-              <button className="btn btn-primary"  onClick={handleEdit}>Save</button>
+              <button className="btn btn-primary" onClick={handleEdit}>Save</button>
               <button className="btn btn-secondary" onClick={() => setIsEditing(false)}>Cancel</button>
             </div>
           ) : (
@@ -224,7 +225,7 @@ const UserTable = () => {
                     <td>{formData.mobileNo}</td>
                     <td>
                       <button className="btn btn-primary" onClick={() => setIsEditing(true)}>Edit</button>
-                      <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                      <button className="btn btn-danger" onClick={handleShowModal}>Delete</button>
                     </td>
                   </tr>
                 </tbody>
@@ -234,12 +235,24 @@ const UserTable = () => {
         </div>
       ) : (
         <p>No user data available</p>
-       
       )}
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this user?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 export default UserTable;
-
-

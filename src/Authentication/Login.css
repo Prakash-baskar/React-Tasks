@@ -222,6 +222,82 @@
   .reg-button:active {
     background-color: #004099;
   }
+
+
   
+  /* new login page  */
+.reg-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.reg-form {
+    display: flex;
+    width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.reg-main-lg {
+    padding: 40px;
+    width: 50%;
+    background-color: white;
+}
+
+.signup-section {
+    padding: 40px;
+    width: 50%;
+    background-color: #f9d65e;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.reg-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f18b3f;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.reg-button:hover {
+    background-color: #44b2f1;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-iconlog {
+    position: absolute;
+    right: 10px;
+    top: 75%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+
+
 
   
